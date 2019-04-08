@@ -23,11 +23,11 @@ public class EmployeeService {
     public void update(Employee employee){
     emplRepo.save(employee);
     }
-    public void delete(Long id) {
+    public void delete(Integer id) {
         emplRepo.deleteById(id);
     }
 
-    public Optional<Employee> findById(Long id){
+    public Optional<Employee> findById(Integer id){
         return emplRepo.findById(id);
     }
 

@@ -1,9 +1,10 @@
 package ru.project.checklist.Repository;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import ru.project.checklist.Entity.Employee;
 
 import java.util.List;
-
-public interface EmployeeRepo extends CrudRepository<Employee, Long> {
+@Repository
+public interface EmployeeRepo extends CrudRepository<Employee, Integer> {
 }
