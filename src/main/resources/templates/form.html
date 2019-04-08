@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
 <body>
-
+<div style="margin-top: 10px;margin-bottom:10px;float:right;">
+    <a href="/"><input type="button" name="add" class="btn btn-secondary" value="На главную"></a>
+</div>
+<h2>Регистрация нового сотрудника</h2>
+<form action="#" th:action="@{/employee/create/submit}" th:object="${employee}" method="post">
+</form>
 </body>
 </html>

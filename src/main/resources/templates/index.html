@@ -1,10 +1,21 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список сотрудников</title>
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-
+<div class="alert alert-secondary" role="alert" >
+    Главная страница
+</div>
+<div style="margin-top: 10px;">
+    <a href="/employee"><input type="button" name="add" class="btn btn-info" value="Список сотрудников"></a>
+</div>
+<div style="margin-top: 10px;">
+    <a href="/position"><input type="button" name="add" class="btn btn-info" value="Список отделов"></a>
+</div>
+</tr>
 </body>
 </html>

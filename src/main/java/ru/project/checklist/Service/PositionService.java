@@ -1,10 +1,11 @@
 package ru.project.checklist.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.project.checklist.Entity.Position;
 import ru.project.checklist.Repository.PositionRepo;
 
-
+@Service
 public class PositionService {
     @Autowired
     private PositionRepo posRepo;

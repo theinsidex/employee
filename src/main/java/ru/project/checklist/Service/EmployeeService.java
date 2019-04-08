@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.project.checklist.Entity.Employee;
 import ru.project.checklist.Repository.EmployeeRepo;
 
+import java.util.Optional;
+
 @Service
 public class EmployeeService {
     @Autowired
@@ -23,6 +25,10 @@ public class EmployeeService {
     }
     public void delete(Long id) {
         emplRepo.deleteById(id);
+    }
+
+    public Optional<Employee> findById(Long id){
+        return emplRepo.findById(id);
     }
 
 }
