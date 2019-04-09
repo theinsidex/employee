@@ -6,6 +6,6 @@ import ru.project.checklist.Entity.Position;
 
 import java.util.List;
 @Repository
-public interface PositionRepo extends CrudRepository<Position,Long> {
+public interface PositionRepo extends CrudRepository<Position,Integer> {
     List<Position> findByName(String name);
 }

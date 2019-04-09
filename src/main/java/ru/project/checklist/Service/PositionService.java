@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.project.checklist.Entity.Position;
 import ru.project.checklist.Repository.PositionRepo;
 
+import java.util.Optional;
+
 @Service
 public class PositionService {
     @Autowired
@@ -21,7 +23,10 @@ public class PositionService {
     public void update(Position position){
         posRepo.save(position);
     }
-    public void delete(Long id) {
+    public void delete(int id) {
         posRepo.deleteById(id);
+    }
+    public Optional<Position> findById(int id){
+        return posRepo.findById(id);
     }
 }

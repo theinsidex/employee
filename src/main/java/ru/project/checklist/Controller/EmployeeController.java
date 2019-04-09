@@ -17,11 +17,15 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class EmployeeController {
     @Autowired
     private EmployeeService emplService;
+    @Autowired
+    private PositionService positionService;
+
     @GetMapping("/")
     public String main(Model model)
     {
@@ -38,15 +42,20 @@ public class EmployeeController {
     @GetMapping("/employee/create")
     public String add(Model model) {
         model.addAttribute("employee", new Employee());
+        List<Position> positions= (List<Position>) positionService.read();
+        model.addAttribute("positions",positions);
+        List<Employee> managers= (List<Employee>) emplService.read();
+        model.addAttribute("managers",managers);
         return "form";
     }
     @PostMapping("/employee/save")
-    public String save(@Valid Employee employee, BindingResult result, RedirectAttributes redirect) {
-        if (result.hasErrors()) {
-            return "form";
-        }
-        emplService.create(employee);
-        redirect.addFlashAttribute("success", "Saved employee successfully!");
+    public String save(Employee employee,
+                       @RequestParam int managerId,
+                       @RequestParam int positionId,
+                       Model model) {
+
+        emplService.create(employee,managerId,positionId);
+
         return "redirect:/employee";
     }
     @GetMapping("/employee/{id}/delete")

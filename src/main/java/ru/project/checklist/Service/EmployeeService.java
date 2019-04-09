@@ -3,7 +3,9 @@ package ru.project.checklist.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.project.checklist.Entity.Employee;
+import ru.project.checklist.Entity.Position;
 import ru.project.checklist.Repository.EmployeeRepo;
+import ru.project.checklist.Repository.PositionRepo;
 
 import java.util.Optional;
 
@@ -11,8 +13,14 @@ import java.util.Optional;
 public class EmployeeService {
     @Autowired
     private EmployeeRepo emplRepo;
+    @Autowired
+    private PositionRepo positionRepo;
 
-    public void create(Employee employee){
+    public void create(Employee employee,int managerId,int positionId){
+        Employee employee1Manager=emplRepo.findById(managerId).get();
+        Position position=positionRepo.findById(positionId).get();
+        employee.setManager(employee1Manager);
+        employee.setPosition(position);
         emplRepo.save(employee);
     }
     public Iterable<Employee> read()

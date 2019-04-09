@@ -7,13 +7,22 @@
 </div>
 <h2>Регистрация нового сотрудника</h2>
 <form action="#" th:action="@{/employee/save}" th:object="${employee}" method="post">
-    <input type="hidden" th:field="*{id}" />
     <p> ФИО: <input type="text" name="name"/> </p>
     <div id="date">
         <label>Дата рождения:</label><input type="date" name="birthday"/>
     </div>
-    <p>Номер отдела:<input type="String" name="position"></p>
-    <p>Номер менеджера: <input type="number" name="manager"/> </p>
+    <p>Номер отдела:
+        <select name="positionId">
+            <option th:each="position : ${positions}"
+                    th:value="${position.id}"
+                    th:utext="${position.name}"/>
+        </select>
+    <p>Номер менеджера:
+    <select name="managerId">
+        <option th:each="manager : ${managers}"
+                th:value="${manager.id}"
+                th:utext="${manager.name}"/>
+    </select>
     <p>Зарплата: <input type="number" name="salary"> </p>
     <div><input type="submit" value="Зарегистрировать"/></div>
 </form>
