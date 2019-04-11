@@ -69,7 +69,7 @@
         <td th:utext="${employee.id}"></td>
         <td th:utext="${employee.name}"></td>
         <td th:utext="${employee.getPosition()}"></td>
-        <td th:utext="${employee.manager}"></td>
+        <td th:utext="${employee.managerName}"></td>
         <td th:utext="${employee.salary}"></td>
         <td><a th:href="@{/employee/{id}/edit(id=${employee.id})}">Изменить</a></td>
         <td><a th:href="@{/employee/{id}/delete(id=${employee.id})}">Удалить</a></td>

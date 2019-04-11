@@ -16,26 +16,28 @@ public class EmployeeService {
     @Autowired
     private PositionRepo positionRepo;
 
-    public void create(Employee employee,int managerId,int positionId){
-        Employee employee1Manager=emplRepo.findById(managerId).get();
-        Position position=positionRepo.findById(positionId).get();
+    public void create(Employee employee, int managerId, int positionId) {
+        Employee employee1Manager = emplRepo.findById(managerId).get();
+        Position position = positionRepo.findById(positionId).get();
         employee.setManager(employee1Manager);
         employee.setPosition(position);
         emplRepo.save(employee);
     }
-    public Iterable<Employee> read()
-    {
-       return emplRepo.findAll();
+
+    public Iterable<Employee> read() {
+        return emplRepo.findAll();
 
     }
-    public void update(Employee employee){
-    emplRepo.save(employee);
+
+    public void update(Employee employee) {
+        emplRepo.save(employee);
     }
+
     public void delete(Integer id) {
         emplRepo.deleteById(id);
     }
 
-    public Optional<Employee> findById(Integer id){
+    public Optional<Employee> findById(Integer id) {
         return emplRepo.findById(id);
     }
 

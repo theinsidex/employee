@@ -12,22 +12,23 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name="Employee")
+@Table(name = "Employee")
 @NoArgsConstructor
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ID")
+    @Column(name = "ID")
     private Integer id;
     private String name;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthday;
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="manager_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id")
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Employee manager;
     @OneToOne
-    @JoinColumn(name="POSITION_ID")
+    @JoinColumn(name = "POSITION_ID")
     private Position position;
     private int salary;
 
@@ -35,8 +36,10 @@ public class Employee {
     public String getPosition() {
         return position.getName();
     }
+
     public String getManagerName() {
-        return manager.getManagerName();
+        if(manager==null) return "отсутствует";
+        return manager.name;
     }
 
     public Employee(String name, LocalDate birthday, Employee manager, Position position, int salary) {

@@ -27,14 +27,13 @@ public class EmployeeController {
     private PositionService positionService;
 
     @GetMapping("/")
-    public String main(Model model)
-    {
+    public String main(Model model) {
         return "index";
     }
+
     @GetMapping("/employee")
-    public String read(Model model)
-    {
-        List<Employee> employees= (List<Employee>) emplService.read();
+    public String read(Model model) {
+        List<Employee> employees = (List<Employee>) emplService.read();
         model.addAttribute("employees", employees);
         return "listempl";
     }
@@ -42,30 +41,37 @@ public class EmployeeController {
     @GetMapping("/employee/create")
     public String add(Model model) {
         model.addAttribute("employee", new Employee());
-        List<Position> positions= (List<Position>) positionService.read();
-        model.addAttribute("positions",positions);
-        List<Employee> managers= (List<Employee>) emplService.read();
-        model.addAttribute("managers",managers);
+        List<Position> positions = (List<Position>) positionService.read();
+        model.addAttribute("positions", positions);
+        List<Employee> managers = (List<Employee>) emplService.read();
+        model.addAttribute("managers", managers);
         return "form";
     }
+
     @PostMapping("/employee/save")
     public String save(Employee employee,
                        @RequestParam int managerId,
                        @RequestParam int positionId,
                        Model model) {
 
-        emplService.create(employee,managerId,positionId);
+        emplService.create(employee, managerId, positionId);
 
         return "redirect:/employee";
     }
+
     @GetMapping("/employee/{id}/delete")
     public String delete(@PathVariable Integer id) {
         emplService.delete(id);
         return "redirect:/listempl";
     }
+
     @GetMapping("/employee/{id}/edit")
     public String edit(@PathVariable int id, Model model) {
-        model.addAttribute("employee", emplService.findById(id));
+        model.addAttribute("employee", emplService.findById(id).get());
+        List<Position> positions = (List<Position>) positionService.read();
+        model.addAttribute("positions", positions);
+        List<Employee> managers = (List<Employee>) emplService.read();
+        model.addAttribute("managers", managers);
         return "form";
     }
 
