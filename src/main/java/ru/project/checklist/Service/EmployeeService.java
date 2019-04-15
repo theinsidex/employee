@@ -16,12 +16,13 @@ public class EmployeeService {
     @Autowired
     private PositionRepo positionRepo;
 
-    public void create(Employee employee, int managerId, int positionId) {
+    public Employee create(Employee employee, int managerId, int positionId) {
         Employee employee1Manager = emplRepo.findById(managerId).get();
         Position position = positionRepo.findById(positionId).get();
         employee.setManager(employee1Manager);
         employee.setPosition(position);
         emplRepo.save(employee);
+        return employee1Manager;
     }
 
     public Iterable<Employee> read() {
@@ -29,8 +30,9 @@ public class EmployeeService {
 
     }
 
-    public void update(Employee employee) {
+    public Employee update(Employee employee) {
         emplRepo.save(employee);
+        return employee;
     }
 
     public void delete(Integer id) {

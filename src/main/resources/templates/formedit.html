@@ -19,7 +19,7 @@
                     th:utext="${position.name}"/>
         </select>
     <p>Менеджер:
-        <select name="managerId" th:value="${employee.manager}">
+        <select name="managerId"  th:value="${employee.manager}">
             <option th:each="manager : ${managers}"
                     th:value="${manager.id}"
                     th:utext="${manager.name}"/>
