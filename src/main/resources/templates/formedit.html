@@ -7,24 +7,24 @@
 </div>
 <h2>Информация о сотруднике</h2>
 <form action="#" th:action="@{/employee/save}" th:object="${employee}" method="post">
-    <p> ФИО: <input type="text" th:name="name"/> </p>
+    <input type="hidden" th:field="*{id}">
+    <p> ФИО: <input type="text" th:name="name" th:value="${employee.name}"/> </p>
     <div id="date">
-        <label>Дата рождения:</label><input type="date" th:name="birthday"/>
+        <label>Дата рождения:</label><input type="date" th:name="birthday" th:value="${employee.birthday}"/>
     </div>
-    <p>Номер отдела:
-        <select name="positionId">
+    <p>Отдел:
+        <select name="positionId" th:value="${employee.position}">
             <option th:each="position : ${positions}"
                     th:value="${position.id}"
                     th:utext="${position.name}"/>
         </select>
-    </p>
-    <p>Номер менеджера:
-    <select name="managerId">
-        <option th:each="manager : ${managers}"
-                th:value="${manager.id}"
-                th:utext="${manager.name}"/>
-    </select>
-    <p>Зарплата: <input type="number" th:name="salary"> </p>
+    <p>Менеджер:
+        <select name="managerId" th:value="${employee.manager}">
+            <option th:each="manager : ${managers}"
+                    th:value="${manager.id}"
+                    th:utext="${manager.name}"/>
+        </select>
+    <p>Зарплата: <input type="number" th:name="salary" th:value="${employee.salary}"> </p>
     <div><input type="submit" value="Зарегистрировать"/></div>
 </form>
 </body>

@@ -62,7 +62,7 @@ public class EmployeeController {
     @GetMapping("/employee/{id}/delete")
     public String delete(@PathVariable Integer id) {
         emplService.delete(id);
-        return "redirect:/listempl";
+        return "redirect:/employee";
     }
 
     @GetMapping("/employee/{id}/edit")
@@ -72,7 +72,7 @@ public class EmployeeController {
         model.addAttribute("positions", positions);
         List<Employee> managers = (List<Employee>) emplService.read();
         model.addAttribute("managers", managers);
-        return "form";
+        return "formedit";
     }
 
 }

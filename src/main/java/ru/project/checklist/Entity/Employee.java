@@ -25,10 +25,9 @@ public class Employee {
     private LocalDate birthday;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Employee manager;
-    @OneToOne
-    @JoinColumn(name = "POSITION_ID")
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @JoinColumn(name = "position_id")
     private Position position;
     private int salary;
 
