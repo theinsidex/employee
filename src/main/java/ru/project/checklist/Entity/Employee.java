@@ -8,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +28,8 @@ public class Employee {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id")
     private Employee manager;
+    @OneToMany(mappedBy="manager")
+    private Set<Employee> subordinates = new HashSet<Employee>();
     @ManyToOne(optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "position_id")
     private Position position;

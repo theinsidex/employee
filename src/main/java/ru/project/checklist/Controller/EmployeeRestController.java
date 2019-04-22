@@ -63,14 +63,6 @@ public class EmployeeRestController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
     public List<Employee> getEmployeeByManager(@PathVariable Integer id, HttpServletResponse response) throws IOException {
-        List<Employee> employees = (List<Employee>) emplService.read();
-        List<Employee> byManager = employees.stream()
-                .filter(x -> x.getManager() != null)
-                .filter(x -> x.getManager().getId().equals(id))
-                .collect(Collectors.toList());
-        if (byManager.isEmpty()) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
-        }
-        return byManager;
+
     }
 }
