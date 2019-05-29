@@ -7,10 +7,13 @@ spring:
         jdbc:
           lob:
             non_contextual_creation:true
+    generate-ddl: true
+
   datasource:
-    url: jdbc:postgresql://46.36.217.103:5432/emplist
+    url: jdbc:postgresql://localhost/emplist
     username: postgres
-    password: 12345678
+    password: Postgres
+
   thymeleaf:
     check-template-location: true
     suffix: .html

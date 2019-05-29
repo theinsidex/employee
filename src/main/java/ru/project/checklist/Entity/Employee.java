@@ -5,8 +5,10 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,11 +27,13 @@ public class Employee {
     private String name;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthday;
+    @Nullable
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id")
     private Employee manager;
     @OneToMany(mappedBy="manager")
     private Set<Employee> subordinates = new HashSet<Employee>();
+
     @ManyToOne(optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "position_id")
     private Position position;
@@ -44,6 +48,7 @@ public class Employee {
         if(manager==null) return "отсутствует";
         return manager.name;
     }
+  
 
     public Employee(String name, LocalDate birthday, Employee manager, Position position, int salary) {
         this.name = name;
@@ -52,4 +57,6 @@ public class Employee {
         this.position = position;
         this.salary = salary;
     }
+
+
 }
